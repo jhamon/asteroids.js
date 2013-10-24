@@ -25,24 +25,23 @@
 
 	Ship.prototype.turnRight = function (theta) {
 		var theta = theta || 0.2;
-
-		var xdir = this.direction[0];
-		var ydir = this.direction[1];
-		new_x_dir = xdir * Math.cos(theta) - ydir * Math.sin(theta);
-		new_y_dir = xdir * Math.sin(theta) + ydir * Math.cos(theta);
-
-		this.direction = [new_x_dir, new_y_dir];
+		this.direction = rotateVec(this.direction, theta);
 	}
 
 	Ship.prototype.turnLeft = function (theta) {
 		var theta = theta || -0.2;
+		this.direction = rotateVec(this.direction, theta);
+	}
 
-		var xdir = this.direction[0];
-		var ydir = this.direction[1];
-		new_x_dir = xdir * Math.cos(theta) - ydir * Math.sin(theta);
-		new_y_dir = xdir * Math.sin(theta) + ydir * Math.cos(theta);
+	var rotateVec = function(vec, theta) {
+		var theta = theta || -0.2;
 
-		this.direction = [new_x_dir, new_y_dir];
+		var x1 = vec[0];
+		var y1 = vec[1];
+		var x2 = x1 * Math.cos(theta) - y1 * Math.sin(theta);
+		var y2 = x1 * Math.sin(theta) + y1 * Math.cos(theta);
+
+	 	return [x2, y2];
 	}
 
 	Ship.prototype.draw = function (ctx) {
