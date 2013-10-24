@@ -48,11 +48,15 @@
 		ctx.beginPath()
 		ctx.fillStyle = this.color;
     ctx.beginPath();
+    var az = Math.atan2(this.direction[1], this.direction[0]);
+
+    var pt1 = rotateVec([-10, -25], az-(Math.PI)/2);
+    var pt2 = rotateVec([10, -25], az-(Math.PI)/2);
 
 		ctx.beginPath();
-		ctx.moveTo(this.pos[0]-10, this.pos[1]-25);
+		ctx.moveTo(this.pos[0]+pt1[0], this.pos[1]+pt1[1]);
 		ctx.lineTo(this.pos[0], this.pos[1]);
-		ctx.lineTo(this.pos[0]+10, this.pos[1]-25);
+		ctx.lineTo(this.pos[0]+pt2[0], this.pos[1]+pt2[1]);
 		ctx.lineJoin = 'miter';
 		ctx.lineWidth = 10;
 		ctx.stroke();
