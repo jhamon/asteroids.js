@@ -40,7 +40,6 @@
       } else if (event.keyCode === 32) {
         game.fireBullet();
       }
-      console.log("A key was pressed: " + event.keyCode);
     });
 
     $(document).keyup(function (event) {
@@ -51,8 +50,8 @@
       } else if (event.keyCode === 39) {
         game.ship.deactivateTurn();
       }
-      console.log("A key was lifted" + event.keyCode)
     });
+
 		game.start(canvas);
   </script>
 

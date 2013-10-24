@@ -38,7 +38,6 @@
 
 	Ship.prototype.boostOn = function () {
 		this.acceleration = 0.1;
-		console.log("Boost on!");
 	}
 
 	Ship.prototype.boostOff = function () {
