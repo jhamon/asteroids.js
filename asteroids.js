@@ -43,6 +43,7 @@
 		var speed = random(2);
 		var direction = [randomDirection(2), randomDirection(2)];
 		var radius = random(Asteroid.RADIUS);
+		var radius = radius > 5 ? radius : radius + 10;
 		asteroid = new Asteroid(pos, speed, direction, radius, Asteroid.COLOR);
 		asteroid.makePoints(20);
 		return asteroid;

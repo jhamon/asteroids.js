@@ -5,10 +5,11 @@
 		this.bullets = [];
 	}
 
-	Game.FPS = 50;
+	Game.FPS = 40;
 
-	Game.prototype.addAsteroids = function (numAsteroids) {
+	Game.prototype.addAsteroids = function () {
 		var asteroids = [];
+		var numAsteroids = Math.floor(this.dimx * this.dimy / 70000);
 		for (var i = 0; i < numAsteroids; i++) {
 			asteroids.push(Asteroids.Asteroid.randomAsteroid(this.dimx, this.dimy));
 		}
@@ -114,7 +115,7 @@
 		this.dimy = canvas.height;
 		this.ctx = canvas.getContext("2d");
 		this.ship = new Asteroids.Ship([this.dimx/2, this.dimy/2])
-		this.asteroids = this.addAsteroids(10);
+		this.asteroids = this.addAsteroids();
 		this.timer_id = window.setInterval(this.step.bind(this), 1000/Game.FPS)
 	}
 
