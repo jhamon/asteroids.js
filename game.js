@@ -2,25 +2,22 @@
 	var Asteroids = window.Asteroids = (window.Asteroids || {});
 
 	var Game = Asteroids.Game = function () {
-		this.asteroids = this.addAsteroids(10);
 		this.bullets = [];
 	}
 
-	Game.DIM_X = 600;
-	Game.DIM_Y = 500;
 	Game.FPS = 50;
 
 	Game.prototype.addAsteroids = function (numAsteroids) {
 		var asteroids = [];
 		for (var i = 0; i < numAsteroids; i++) {
-			asteroids.push(Asteroids.Asteroid.randomAsteroid(Game.DIM_X, Game.DIM_Y));
+			asteroids.push(Asteroids.Asteroid.randomAsteroid(this.dimx, this.dimy));
 		}
 		return asteroids;
 	}
 
 
 	Game.prototype.draw = function () {
-		this.ctx.clearRect(0,0, Game.DIM_X, Game.DIM_Y);
+		this.ctx.clearRect(0,0, this.dimx, this.dimy);
 		this.ship.draw(this.ctx);
 		for (var i = 0; i < this.asteroids.length; i++) {
 			this.asteroids[i].draw(this.ctx);
@@ -32,12 +29,12 @@
 
 	Game.prototype.move = function () {
 		for (var i = 0; i < this.asteroids.length; i++) {
-			this.asteroids[i].move(Game.DIM_X, Game.DIM_Y);
+			this.asteroids[i].move(this.dimx, this.dimy);
 		}
 		for (var i = 0; i < this.bullets.length; i++) {
-			this.bullets[i].move(Game.DIM_X, Game.DIM_Y);
+			this.bullets[i].move(this.dimx, this.dimy);
 		}
-		this.ship.move(Game.DIM_X, Game.DIM_Y);
+		this.ship.move(this.dimx, this.dimy);
 	}
 
 	Game.prototype.ageBullets = function () {
@@ -113,8 +110,11 @@
 	}
 
 	Game.prototype.start = function (canvas) {
-		this.ship = new Asteroids.Ship([Game.DIM_X/2, Game.DIM_Y/2])
+		this.dimx = canvas.width;
+		this.dimy = canvas.height;
 		this.ctx = canvas.getContext("2d");
+		this.ship = new Asteroids.Ship([this.dimx/2, this.dimy/2])
+		this.asteroids = this.addAsteroids(10);
 		this.timer_id = window.setInterval(this.step.bind(this), 1000/Game.FPS)
 	}
 

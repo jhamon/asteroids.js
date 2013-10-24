@@ -20,9 +20,8 @@
 
   <script>
     var canvas = document.createElement("canvas");
-    canvas.setAttribute("width", "500");
-    canvas.setAttribute("height", "500");
-		// canvas.width = window.innerWidth;
+    canvas.setAttribute("width", window.innerWidth);
+    canvas.setAttribute("height", window.innerHeight*0.8);
 
     var div = document.getElementById("asteroids_canvas");
     div.appendChild(canvas);
