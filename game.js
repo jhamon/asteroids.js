@@ -41,7 +41,7 @@
 		var oldBullets = [];
 		for (var i = 0; i < this.bullets.length; i++) {
 			this.bullets[i].incrementAge();
-			if (this.bullets[i].age === 60) {
+			if (this.bullets[i].age === 100) {
 				oldBullets.push(this.bullets[i]);
 			}
 		}
