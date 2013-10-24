@@ -23,4 +23,18 @@
 		return new Asteroids.Bullet(this.pos, this.direction, this.speed);
 	}
 
+	Ship.prototype.draw = function (ctx) {
+		ctx.beginPath()
+		ctx.fillStyle = this.color;
+    ctx.beginPath();
+
+		ctx.beginPath();
+		ctx.moveTo(this.pos[0]-10, this.pos[1]-25);
+		ctx.lineTo(this.pos[0], this.pos[1]);
+		ctx.lineTo(this.pos[0]+10, this.pos[1]-25);
+		ctx.lineJoin = 'miter';
+		ctx.lineWidth = 10;
+		ctx.stroke();
+  }
+
 })();
