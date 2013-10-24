@@ -5,7 +5,7 @@
 		return ((this%n)+n)%n;
 	}
 
-	var MovingObject = Asteroids.MovingObject = function(pos, speed, dir, radius, color) {
+	var MovingObject = Asteroids.MovingObject = function(pos, speed, dir, radius, color, acceleration, max_speed) {
 
 		function normalizeVec(dir) {
 			var magnitude = Math.sqrt(Math.pow(dir[0], 2) + Math.pow(dir[1], 2));
@@ -22,9 +22,15 @@
 		this.direction = normalizeVec(dir);
 		this.radius = radius || 20;
 		this.color = color || "#ddd" ;
+		this.acceleration = acceleration || 0 ;
+		this.max_speed = max_speed || 5;
 	}
 
 	MovingObject.prototype.move = function (dimx, dimy) {
+		if ((this.speed+this.acceleration < this.max_speed) && (this.speed+this.acceleration > 0)) {
+			this.speed += this.acceleration;
+		}
+
 		this.pos[0] += (this.direction[0] * this.speed);
 		this.pos[1] += (this.direction[1] * this.speed);
 

@@ -2,7 +2,7 @@
 	var Asteroids = window.Asteroids = (window.Asteroids || {});
 
 	var Ship = Asteroids.Ship = function (pos, speed) {
-		Asteroids.MovingObject.call(this, pos, speed, Ship.DIR, Ship.RADIUS, Ship.COLOR)
+		Asteroids.MovingObject.call(this, pos, speed, Ship.DIR, Ship.RADIUS, Ship.COLOR, Ship.ACCEL)
 	}
 
 	Ship.inherits(Asteroids.MovingObject);
@@ -10,6 +10,7 @@
 	Ship.RADIUS = 20;
 	Ship.COLOR = "#286334" // stealth green
 	Ship.DIR = [0,1];
+	Ship.ACCEL = 0;
 
 	Ship.prototype.power = function(impulse) {
 		if (impulse > 0 && this.speed < 5) {
@@ -26,6 +27,20 @@
 	Ship.prototype.turnRight = function (theta) {
 		var theta = theta || 0.2;
 		this.direction = rotateVec(this.direction, theta);
+	}
+
+	Ship.prototype.boostOn = function () {
+		this.acceleration = 0.1;
+		console.log("Boost on!");
+	}
+
+	Ship.prototype.boostOff = function () {
+		this.acceleration = 0;
+		console.log("Boost on!");
+	}
+
+	Ship.prototype.brake = function () {
+		this.acceleration = -0.1;
 	}
 
 	Ship.prototype.turnLeft = function (theta) {
