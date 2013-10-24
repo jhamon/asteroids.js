@@ -12,15 +12,37 @@
 	Ship.DIR = [0,1];
 
 	Ship.prototype.power = function(impulse) {
-		if (impulse === .1 && this.speed < 5) {
+		if (impulse > 0 && this.speed < 5) {
 			this.speed += impulse;
-		} else if (impulse === -.01 && this.speed > 0.01) {
+		} else if (impulse < 0 && this.speed > -impulse) {
 			this.speed += impulse
 		}
 	}
 
 	Ship.prototype.fireBullet = function() {
 		return new Asteroids.Bullet(this.pos, this.direction, this.speed);
+	}
+
+	Ship.prototype.turnRight = function (theta) {
+		var theta = theta || 0.2;
+
+		var xdir = this.direction[0];
+		var ydir = this.direction[1];
+		new_x_dir = xdir * Math.cos(theta) - ydir * Math.sin(theta);
+		new_y_dir = xdir * Math.sin(theta) + ydir * Math.cos(theta);
+
+		this.direction = [new_x_dir, new_y_dir];
+	}
+
+	Ship.prototype.turnLeft = function (theta) {
+		var theta = theta || -0.2;
+
+		var xdir = this.direction[0];
+		var ydir = this.direction[1];
+		new_x_dir = xdir * Math.cos(theta) - ydir * Math.sin(theta);
+		new_y_dir = xdir * Math.sin(theta) + ydir * Math.cos(theta);
+
+		this.direction = [new_x_dir, new_y_dir];
 	}
 
 	Ship.prototype.draw = function (ctx) {

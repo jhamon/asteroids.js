@@ -27,10 +27,20 @@
     div.appendChild(canvas);
 
     game = new Asteroids.Game()
+
 		key('space', game.fireBullet.bind(game));
+
 		key('up', function() {
-			game.ship.power(.1);
+			game.ship.power(.2);
 		});
+
+    key('right', function() {
+      game.ship.turnRight();
+    });
+
+    key('left', function() {
+      game.ship.turnleft();
+    });
 
 		game.start(canvas);
   </script>
