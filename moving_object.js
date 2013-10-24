@@ -5,16 +5,27 @@
 		return ((this%n)+n)%n;
 	}
 
-	var MovingObject = Asteroids.MovingObject = function(pos, speed, dir, radius, color, acceleration, max_speed) {
+	var rotateVec = Asteroids.rotateVec = function(vec, theta) {
+		var theta = theta || -0.2;
 
-		function normalizeVec(dir) {
-			var magnitude = Math.sqrt(Math.pow(dir[0], 2) + Math.pow(dir[1], 2));
-			if (magnitude != 1) {
-				dir[0] = dir[0] / magnitude;
-				dir[1] = dir[1] / magnitude;
-			}
-			return dir;
+		var x1 = vec[0];
+		var y1 = vec[1];
+		var x2 = x1 * Math.cos(theta) - y1 * Math.sin(theta);
+		var y2 = x1 * Math.sin(theta) + y1 * Math.cos(theta);
+
+	 	return [x2, y2];
+	}
+
+	var normalizeVec = Asteroids.normalizeVec = function (dir) {
+		var magnitude = Math.sqrt(Math.pow(dir[0], 2) + Math.pow(dir[1], 2));
+		if (magnitude != 1) {
+			dir[0] = dir[0] / magnitude;
+			dir[1] = dir[1] / magnitude;
 		}
+		return dir;
+	}
+
+	var MovingObject = Asteroids.MovingObject = function(pos, speed, dir, radius, color, acceleration) {
 
 		this.pos = pos; // # [x,y]
 		this.speed = speed || 1;
@@ -23,12 +34,17 @@
 		this.radius = radius || 20;
 		this.color = color || "#ddd" ;
 		this.acceleration = acceleration || 0 ;
-		this.max_speed = max_speed || 5;
+		this.max_speed = 5;
+		this.angular_velocity = 0;
 	}
 
 	MovingObject.prototype.move = function (dimx, dimy) {
 		if ((this.speed+this.acceleration < this.max_speed) && (this.speed+this.acceleration > 0)) {
 			this.speed += this.acceleration;
+		}
+
+		if ( this.angular_velocity ) {
+			this.direction = rotateVec(this.direction, this.angular_velocity)
 		}
 
 		this.pos[0] += (this.direction[0] * this.speed);

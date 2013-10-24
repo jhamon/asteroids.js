@@ -46,6 +46,10 @@
     $(document).keyup(function (event) {
       if (event.keyCode === 38) {
         game.ship.boostOff();
+      } else if (event.keyCode === 37) {
+        game.ship.deactivateTurn();
+      } else if (event.keyCode === 39) {
+        game.ship.deactivateTurn();
       }
       console.log("A key was lifted" + event.keyCode)
     });

@@ -24,9 +24,16 @@
 		return new Asteroids.Bullet(this.pos, this.direction, this.speed);
 	}
 
-	Ship.prototype.turnRight = function (theta) {
-		var theta = theta || 0.2;
-		this.direction = rotateVec(this.direction, theta);
+	Ship.prototype.turnRight = function () {
+		this.angular_velocity = 0.07;
+	}
+
+	Ship.prototype.turnLeft = function () {
+		this.angular_velocity = -0.07;
+	}
+
+	Ship.prototype.deactivateTurn = function () {
+		this.angular_velocity = 0;
 	}
 
 	Ship.prototype.boostOn = function () {
@@ -36,27 +43,10 @@
 
 	Ship.prototype.boostOff = function () {
 		this.acceleration = 0;
-		console.log("Boost on!");
 	}
 
 	Ship.prototype.brake = function () {
 		this.acceleration = -0.1;
-	}
-
-	Ship.prototype.turnLeft = function (theta) {
-		var theta = theta || -0.2;
-		this.direction = rotateVec(this.direction, theta);
-	}
-
-	var rotateVec = function(vec, theta) {
-		var theta = theta || -0.2;
-
-		var x1 = vec[0];
-		var y1 = vec[1];
-		var x2 = x1 * Math.cos(theta) - y1 * Math.sin(theta);
-		var y2 = x1 * Math.sin(theta) + y1 * Math.cos(theta);
-
-	 	return [x2, y2];
 	}
 
 	Ship.prototype.draw = function (ctx) {
@@ -65,8 +55,8 @@
     ctx.beginPath();
     var az = Math.atan2(this.direction[1], this.direction[0]);
 
-    var pt1 = rotateVec([-10, -25], az-(Math.PI)/2);
-    var pt2 = rotateVec([10, -25], az-(Math.PI)/2);
+    var pt1 = Asteroids.rotateVec([-10, -25], az-(Math.PI)/2);
+    var pt2 = Asteroids.rotateVec([10, -25], az-(Math.PI)/2);
 
 		ctx.beginPath();
 		ctx.moveTo(this.pos[0]+pt1[0], this.pos[1]+pt1[1]);
