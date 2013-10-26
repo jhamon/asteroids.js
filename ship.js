@@ -25,11 +25,11 @@
 	}
 
 	Ship.prototype.turnRight = function () {
-		this.angular_velocity = 0.07;
+		this.angular_velocity = -0.07;
 	}
 
 	Ship.prototype.turnLeft = function () {
-		this.angular_velocity = -0.07;
+		this.angular_velocity = 0.07;
 	}
 
 	Ship.prototype.deactivateTurn = function () {
