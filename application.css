@@ -30,106 +30,106 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
-	display: block;
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
 ol, ul {
-	list-style: none;
+  list-style: none;
 }
 blockquote, q {
-	quotes: none;
+  quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+  content: '';
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 header {
-	background: #ddd;
-	padding: 20px;
-	margin-bottom: 20px;
-	box-shadow: 0 0 5px rgba(0,0, 0, .5);
+  background: #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 5px rgba(0,0, 0, .5);
 }
 
 header #branding {
-	font-size: 24px;
-	font-weight: bold;
-	display: inline;
+  font-size: 24px;
+  font-weight: bold;
+  display: inline;
 }
 
 header span.user-meta {
-	float: right;
+  float: right;
 }
 
 body {
-	background: #f0f0f0;
-	font-family: 'Helvetica Neue', Arial, Sans;
-	line-height: 1.4em;
+  background: #f0f0f0;
+  font-family: 'Helvetica Neue', Arial, Sans;
+  line-height: 1.4em;
 }
 
 a {
-	color: #335CD6;
+  color: #335CD6;
 }
 
 a:visited {
-	color: #001964;
+  color: #001964;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-weight: bold;
-	margin-bottom: 1em;
+  font-weight: bold;
+  margin-bottom: 1em;
 }
 
 h1 {
-	font-size: 125%;
+  font-size: 125%;
 }
 
 h2 {
-	font-size: 120%;
+  font-size: 120%;
 }
 h3 {
-	font-size: 110%;
+  font-size: 110%;
 }
 
 .notice {
-	background: #5CAD5C;
-	padding: 20px;
+  background: #5CAD5C;
+  padding: 20px;
 }
 
 .errors {
-	background: #FF7171;
-	padding: 20px;
+  background: #FF7171;
+  padding: 20px;
 }
 
 .alert {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 #content {
-	padding: 20px;
+  padding: 20px;
 }
 
 #asteroids_canvas {
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 #asteroids_canvas canvas {
-	border: 2px solid #ccc;
+  border: 2px solid #ccc;
 }
