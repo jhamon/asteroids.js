@@ -67,11 +67,8 @@
 		this.ageBullets();
 		this.checkBulletImpacts();
 		this.ship.power(-.01);
+		requestAnimationFrame(this.step.bind(this))
 		//this.checkCollisions();
-	}
-
-	Game.prototype.stop = function () {
-		window.clearInterval(this.timer_id)
 	}
 
 	Game.prototype.checkCollisions = function () {
@@ -116,7 +113,6 @@
 		this.ctx = canvas.getContext("2d");
 		this.ship = new Asteroids.Ship([this.dimx/2, this.dimy/2])
 		this.asteroids = this.addAsteroids();
-		this.timer_id = window.setInterval(this.step.bind(this), 1000/Game.FPS)
+		this.step();
 	}
-
 })();
