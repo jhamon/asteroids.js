@@ -19,7 +19,7 @@
   Bullet.prototype.defaults = {
     speed: 9,
     size: 3,
-    color: '#f00'
+    color: '#ff0000'
   }
 
   Bullet.prototype.incrementAge = function() {

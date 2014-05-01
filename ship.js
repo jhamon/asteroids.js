@@ -16,7 +16,8 @@
 
   Ship.prototype.defaults = {
     radius: 20,
-    color: "#286334", // stealth green
+    // color: "#97D071",
+    color: "#b3b3b3",
     dir: [0, 1],
     acceleration: 0
   }
@@ -60,6 +61,7 @@
   Ship.prototype.draw = function (ctx) {
     ctx.beginPath()
     ctx.fillStyle = this.color;
+    ctx.strokeStyle = this.color;
     ctx.beginPath();
     var az = Math.atan2(this.direction[1], this.direction[0]);
 

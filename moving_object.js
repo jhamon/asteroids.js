@@ -56,6 +56,7 @@
   MovingObject.prototype.draw = function(ctx) {
     ctx.beginPath()
     ctx.fillStyle = this.color;
+    ctx.strokeStyle = '#fff';
     ctx.arc(
           this.pos[0],
           this.pos[1],

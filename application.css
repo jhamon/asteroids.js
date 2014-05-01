@@ -17,6 +17,8 @@
    License: none (public domain)
 */
 
+@import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -61,17 +63,12 @@ table {
   border-spacing: 0;
 }
 
-header {
-  background: #ddd;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 5px rgba(0,0, 0, .5);
-}
-
 header #branding {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
-  display: inline;
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }
 
 header span.user-meta {
@@ -79,17 +76,11 @@ header span.user-meta {
 }
 
 body {
-  background: #f0f0f0;
-  font-family: 'Helvetica Neue', Arial, Sans;
+  background: #020401;
+  color: #ffffff;
+  font-family: 'Press Start 2P', 'Helvetica Neue', Arial, Sans;
   line-height: 1.4em;
-}
-
-a {
-  color: #335CD6;
-}
-
-a:visited {
-  color: #001964;
+  overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -126,10 +117,16 @@ h3 {
   padding: 20px;
 }
 
+#instructions {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
 #asteroids_canvas {
   margin: 0 auto;
 }
 
 #asteroids_canvas canvas {
-  border: 2px solid #ccc;
+  border: 0px solid #ccc;
 }

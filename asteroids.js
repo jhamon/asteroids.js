@@ -14,7 +14,7 @@
   Asteroid.inherits(Asteroids.MovingObject);
 
   Asteroid.prototype.defaults = {
-    color: '#ccc',
+    color: '#FFF',
     radius: 40
   }
 
@@ -60,6 +60,7 @@
 
   Asteroid.prototype.draw = function(ctx) {
     ctx.beginPath()
+    ctx.strokeStyle = "#CCC";
     ctx.lineWidth = 2;
     ctx.lineJoin = 'round';
     for (var i = 1; i < this.points.length - 1; i++) {
