@@ -2,18 +2,25 @@
 	var Asteroids = window.Asteroids = (window.Asteroids || {});
 
 	var Bullet = Asteroids.Bullet = function (pos, direction, ship_speed) {
-		var bullet_pos = pos.slice();
-		Asteroids.MovingObject.call(this,
-			bullet_pos, Bullet.SPEED, direction, Bullet.SIZE, Bullet.COLOR
-		);
+		var bullet_properties = {
+				dir: direction,
+				pos: pos.slice(),
+				speed: this.defaults.speed,
+				radius: this.defaults.size,
+				color: this.defaults.color,
+		}
+
+		Asteroids.MovingObject.call(this, bullet_properties);
 		this.age = 0;
 	}
-
+	
 	Bullet.inherits(Asteroids.MovingObject);
 
-	Bullet.SPEED = 9;
-	Bullet.SIZE = 3;
-	Bullet.COLOR = "#f00";
+	Bullet.prototype.defaults = {
+		speed: 9,
+		size: 3,
+		color: '#f00'
+	}
 
 	Bullet.prototype.incrementAge = function() {
 		this.age += 1;

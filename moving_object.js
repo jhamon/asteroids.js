@@ -25,17 +25,16 @@
 		return dir;
 	}
 
-	var MovingObject = Asteroids.MovingObject = function(pos, speed, dir, radius, color, acceleration) {
-
-		this.pos = pos; // # [x,y]
-		this.speed = speed || 1;
-		// this.direction = dir || [1,1]; // # [delta_x, delta_y]
+	var MovingObject = Asteroids.MovingObject = function(options) {
+		var dir =               options.dir              || [1,1];
 		this.direction = normalizeVec(dir);
-		this.radius = radius || 20;
-		this.color = color || "#ddd" ;
-		this.acceleration = acceleration || 0 ;
-		this.max_speed = 5;
-		this.angular_velocity = 0;
+		this.pos =              options.pos              || [0, 0];
+		this.speed =            options.speed            || 1;
+		this.radius =           options.radius           || 20;
+		this.color =            options.color            || "#ddd" ;
+		this.acceleration =     options.acceleration     || 0 ;
+		this.max_speed =        options.max_speed        || 5;
+		this.angular_velocity = options.angular_velocity || 0;
 	}
 
 	MovingObject.prototype.move = function (dimx, dimy) {

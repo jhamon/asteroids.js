@@ -16,7 +16,6 @@
 		return asteroids;
 	}
 
-
 	Game.prototype.draw = function () {
 		this.ctx.clearRect(0,0, this.dimx, this.dimy);
 		this.ship.draw(this.ctx);

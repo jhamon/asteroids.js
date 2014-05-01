@@ -2,15 +2,24 @@
 	var Asteroids = window.Asteroids = (window.Asteroids || {});
 
 	var Ship = Asteroids.Ship = function (pos, speed) {
-		Asteroids.MovingObject.call(this, pos, speed, Ship.DIR, Ship.RADIUS, Ship.COLOR, Ship.ACCEL)
+		var ship_properties = {
+				pos: pos,
+				speed: speed,
+				radius: this.defaults.radius,
+				color: this.defaults.color,
+				acceleration: this.defaults.acceleration
+		}
+		Asteroids.MovingObject.call(this, ship_properties)
 	}
 
 	Ship.inherits(Asteroids.MovingObject);
 
-	Ship.RADIUS = 20;
-	Ship.COLOR = "#286334" // stealth green
-	Ship.DIR = [0,1];
-	Ship.ACCEL = 0;
+	Ship.prototype.defaults = {
+		radius: 20,
+		color: "#286334", // stealth green
+		dir: [0, 1],
+		acceleration: 0
+	}
 
 	Ship.prototype.power = function(impulse) {
 		if (impulse > 0 && this.speed < 5) {

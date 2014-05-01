@@ -2,12 +2,21 @@
 	var Asteroids = window.Asteroids = (window.Asteroids || {});
 
 	var Asteroid = Asteroids.Asteroid = function(pos, speed, direction, radius, color) {
-		Asteroids.MovingObject.call(this, pos, speed, direction, radius, color);
+		var asteroid_properties = {
+				dir: direction,
+				pos: pos,
+				speed: speed,
+				radius: radius,
+				color: color
+		}
+		Asteroids.MovingObject.call(this, asteroid_properties);
 	}
 	Asteroid.inherits(Asteroids.MovingObject);
 
-	Asteroid.COLOR = "#ccc";
-	Asteroid.RADIUS = 40;
+	Asteroid.prototype.defaults = {
+		color: '#ccc',
+		radius: 40
+	}
 
 	Asteroid.prototype.makePoints = function (numPoints) {
 		this.points = [];
@@ -42,8 +51,8 @@
 		var pos = [random(dimX), random(dimY)];
 		var speed = random(2);
 		var direction = [randomDirection(2), randomDirection(2)];
-		var radius = random(Asteroid.RADIUS);
-		var radius = radius > 5 ? radius : radius + 10;
+		var radius = random(Asteroid.prototype.defaults.radius);
+		radius = radius > 5 ? radius : radius + 10;
 		asteroid = new Asteroid(pos, speed, direction, radius, Asteroid.COLOR);
 		asteroid.makePoints(20);
 		return asteroid;
