@@ -45,50 +45,48 @@
     return this;
   };
 
-  CanvasDrawer.prototype.drawBullets = function () {
-    var drawer = this;
-    this.game.bullets.forEach(this.defaultDraw.bind(drawer));
+  CanvasDrawer.prototype.drawAsteroids = function () {
+    this.ctx.strokeStyle = '#CCC';
+    this.ctx.lineWidth   = 2;
+    this.ctx.lineJoin    = 'round';
+    this.game.asteroids.forEach(this.drawOneAsteroid.bind(this));
     return this;
   };
 
-  CanvasDrawer.prototype.drawAsteroids = function () {
-    var drawer = this;
-    this.game.asteroids.forEach(this.drawOneAsteroid.bind(drawer));
+  CanvasDrawer.prototype.drawBullets = function () {
+    this.game.bullets.forEach(this.defaultDraw.bind(this));
     return this;
   };
 
   CanvasDrawer.prototype.drawOneAsteroid = function(asteroid) {
-    var ctx         = this.ctx;
-    ctx.beginPath();
-    ctx.strokeStyle = '#CCC';
-    ctx.lineWidth   = 2;
-    ctx.lineJoin    = 'round';
+    this.ctx.fillStyle   = asteroid.color;
+    this.polygonFromPoints(asteroid);
+    this.ctx.fill();
+    this.ctx.stroke();
+  };
 
+  CanvasDrawer.prototype.polygonFromPoints = function (asteroid) {
+    var ctx = this.ctx;
+    ctx.beginPath();
     asteroid.points.forEach( function (point) {
       ctx.lineTo(asteroid.x + point[0], 
                  asteroid.y + point[1]);
-    })
-    ctx.fillStyle = asteroid.color;
+    });
     ctx.closePath();
-    ctx.fill();
-
-    ctx.stroke();
   };
 
   CanvasDrawer.prototype.defaultDraw = function(movableObj) {
-    var ctx = this.ctx;
-    ctx.beginPath();
-    ctx.fillStyle = movableObj.color;
+    var ctx         = this.ctx;
+    ctx.fillStyle   = movableObj.color;
     ctx.strokeStyle = movableObj.color;
-    ctx.arc(
-      movableObj.x,
-      movableObj.y,
-      movableObj.radius,
-      0,
-      2 * Math.PI,
-      false
-    );
+    this.circleAt(movableObj.x, movableObj.y, movableObj.radius);
     ctx.fill();
     return this;
+  };
+
+  CanvasDrawer.prototype.circleAt = function (x, y, radius) {
+    this.ctx.beginPath();
+    this.ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+    this.ctx.closePath();
   };
 })();
