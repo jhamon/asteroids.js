@@ -7,6 +7,7 @@
   var normalizeVec = Asteroids.Utils.normalizeVec;
 
   var MovingObject = Asteroids.MovingObject = function(options) {
+    options               = options || {};
     var dir               = options.dir || [1,1];
     this.direction        = normalizeVec(dir);
     this.x                = options.x || 0;

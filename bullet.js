@@ -18,7 +18,7 @@
     this.age = 0;
   };
 
-  Bullet.inherits(Asteroids.MovingObject);
+  Bullet.prototype = new Asteroids.MovingObject();
 
   Bullet.prototype.defaults = {
     speed: 9,

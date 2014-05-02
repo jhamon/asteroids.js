@@ -7,7 +7,7 @@
     Asteroids.MovingObject.call(this, asteroid_properties);
   };
 
-  Asteroid.inherits(Asteroids.MovingObject);
+  Asteroid.prototype = new Asteroids.MovingObject();
 
   Asteroid.prototype.defaults = {
     color  : '#FFF',

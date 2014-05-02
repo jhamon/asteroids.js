@@ -15,7 +15,7 @@
     this.setupKeypressListeners();
   };
 
-  Ship.inherits(Asteroids.MovingObject);
+  Ship.prototype = new Asteroids.MovingObject();
 
   Ship.prototype.defaults = {
     acceleration : 0,
