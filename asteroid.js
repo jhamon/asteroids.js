@@ -10,8 +10,8 @@
   Asteroid.inherits(Asteroids.MovingObject);
 
   Asteroid.prototype.defaults = {
-    color: '#FFF',
-    radius: 40
+    color  : '#FFF',
+    radius : 40
   };
 
   Asteroid.prototype.makePoints = function (numPoints) {

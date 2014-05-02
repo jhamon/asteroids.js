@@ -6,11 +6,11 @@
     var positionX = this.viewState.width / 2;
     var positionY = this.viewState.height / 2;
     var ship_properties = {
-        pos: [positionX, positionY],
-        radius: this.defaults.radius,
-        color: this.defaults.color,
-        acceleration: this.defaults.acceleration,
-        max_speed: this.defaults.max_speed
+        pos          : [positionX, positionY],
+        radius       : this.defaults.radius,
+        color        : this.defaults.color,
+        acceleration : this.defaults.acceleration,
+        max_speed    : this.defaults.max_speed
     };
     Asteroids.MovingObject.call(this, ship_properties);
     this.setupKeypressListeners();
@@ -19,24 +19,24 @@
   Ship.inherits(Asteroids.MovingObject);
 
   Ship.prototype.defaults = {
-    radius: 20,
-    color: '#b3b3b3',
-    dir: [0, 1],
-    acceleration: 0,
-    max_speed: 7
+    radius       : 20,
+    color        : '#b3b3b3',
+    dir          : [0, 1],
+    acceleration : 0,
+    max_speed    : 7
   };
 
   Ship.prototype.keydownEvents = {
-    '38': 'boostOn',
-    '40': 'brake',
-    '37': 'turnRight',
-    '39': 'turnLeft'
+    '38' : 'boostOn',
+    '40' : 'brake',
+    '37' : 'turnRight',
+    '39' : 'turnLeft'
   };
 
   Ship.prototype.keyupEvents = {
-    '38': 'boostOff',
-    '37': 'deactivateTurn',
-    '39': 'deactivateTurn'
+    '38' : 'boostOff',
+    '37' : 'deactivateTurn',
+    '39' : 'deactivateTurn'
   };
 
   Ship.prototype.setupKeypressListeners = function () {
@@ -53,7 +53,7 @@
   };
 
   Ship.prototype.move = function () {
-    this.power(-0.01); // break slowly if not accelerating.
+    this.power(-0.01); // brake slowly if not accelerating.
     Asteroids.MovingObject.prototype.move.call(this);
   };
 
