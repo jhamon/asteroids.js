@@ -57,19 +57,4 @@
     asteroid.makePoints(20);
     return asteroid;
   }
-
-  Asteroid.prototype.draw = function(ctx) {
-    ctx.beginPath()
-    ctx.strokeStyle = "#CCC";
-    ctx.lineWidth = 2;
-    ctx.lineJoin = 'round';
-    for (var i = 1; i < this.points.length - 1; i++) {
-      ctx.lineTo(this.points[i][0] + this.pos[0], this.points[i][1] + this.pos[1]);
-    };
-    ctx.fillStyle = this.color;
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.stroke();
-  }
 })();

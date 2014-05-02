@@ -29,5 +29,4 @@
   Bullet.prototype.hitAsteroid = function(asteroid) {
     return this.isCollidedWith(asteroid);
   }
-
 })();

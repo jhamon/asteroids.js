@@ -16,7 +16,6 @@
 
   Ship.prototype.defaults = {
     radius: 20,
-    // color: "#97D071",
     color: "#b3b3b3",
     dir: [0, 1],
     acceleration: 0
@@ -57,24 +56,4 @@
   Ship.prototype.brake = function () {
     this.acceleration = -0.1;
   }
-
-  Ship.prototype.draw = function (ctx) {
-    ctx.beginPath()
-    ctx.fillStyle = this.color;
-    ctx.strokeStyle = this.color;
-    ctx.beginPath();
-    var az = Math.atan2(this.direction[1], this.direction[0]);
-
-    var pt1 = Asteroids.rotateVec([-10, -25], az-(Math.PI)/2);
-    var pt2 = Asteroids.rotateVec([10, -25], az-(Math.PI)/2);
-
-    ctx.beginPath();
-    ctx.moveTo(this.pos[0]+pt1[0], this.pos[1]+pt1[1]);
-    ctx.lineTo(this.pos[0], this.pos[1]);
-    ctx.lineTo(this.pos[0]+pt2[0], this.pos[1]+pt2[1]);
-    ctx.lineJoin = 'miter';
-    ctx.lineWidth = 10;
-    ctx.stroke();
-  }
-
 })();

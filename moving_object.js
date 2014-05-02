@@ -26,14 +26,14 @@
   }
 
   var MovingObject = Asteroids.MovingObject = function(options) {
-    var dir =               options.dir              || [1,1];
-    this.direction = normalizeVec(dir);
-    this.pos =              options.pos              || [0, 0];
-    this.speed =            options.speed            || 1;
-    this.radius =           options.radius           || 20;
-    this.color =            options.color            || "#ddd" ;
-    this.acceleration =     options.acceleration     || 0 ;
-    this.max_speed =        options.max_speed        || 5;
+    var dir               = options.dir || [1,1];
+    this.direction        = normalizeVec(dir);
+    this.pos              = options.pos || [0, 0];
+    this.speed            = options.speed || 1;
+    this.radius           = options.radius || 20;
+    this.color            = options.color || "#ddd" ;
+    this.acceleration     = options.acceleration || 0 ;
+    this.max_speed        = options.max_speed || 5;
     this.angular_velocity = options.angular_velocity || 0;
   }
 
@@ -51,21 +51,6 @@
 
     this.pos[0] = this.pos[0].mod(dimx);
     this.pos[1] = this.pos[1].mod(dimy);
-  }
-
-  MovingObject.prototype.draw = function(ctx) {
-    ctx.beginPath()
-    ctx.fillStyle = this.color;
-    ctx.strokeStyle = '#fff';
-    ctx.arc(
-          this.pos[0],
-          this.pos[1],
-          this.radius,
-          0,
-          2 * Math.PI,
-          false
-          );
-    ctx.fill();
   }
 
   MovingObject.prototype.isCollidedWith = function(otherObject) {
