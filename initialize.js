@@ -13,7 +13,6 @@ $(document).ready( function () {
     Asteroids.viewState.height = height;
     canvas.setAttribute("width", width);
     canvas.setAttribute("height", height);
-    console.log('reconfig');
   }
   updateViewState();
 
@@ -22,6 +21,8 @@ $(document).ready( function () {
 
   window.onresize = updateViewState;
 
-  game = new Asteroids.Game()
-  game.start(canvas);
+  console.log("Thanks for checking out my project.  If you're looking for a good Ruby/Javascript dev in the SF Bay Area, please reach out.  I'm Jen Hamon, jen@hamon.io");
+  
+  game = new Asteroids.Game(canvas)
+  game.start();
 })

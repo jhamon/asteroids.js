@@ -2,16 +2,16 @@
   'use strict';
   var Asteroids = window.Asteroids = (window.Asteroids || {});
 
-  var Game = Asteroids.Game = function () {
-    this.bullets = [];
+  var Game = Asteroids.Game = function (canvas) {
+    this.bullets    = [];
+    this.ctx        = canvas.getContext("2d");
+    this.ship       = new Asteroids.Ship();
+    this.drawer     = new Asteroids.CanvasDrawer(this);
+    this.asteroids  = this.addAsteroids();
+    this.configureEventListeners();
   }
 
   Game.prototype.start = function (canvas) {
-    this.ctx        = canvas.getContext("2d");
-    this.ship       = new Asteroids.Ship();
-    this.asteroids  = this.addAsteroids();
-    this.drawer     = new Asteroids.CanvasDrawer(this);
-    this.configureEventListeners();
     this.step();
   }
 
