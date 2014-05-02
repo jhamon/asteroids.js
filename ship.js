@@ -3,28 +3,21 @@
   var Asteroids = window.Asteroids = (window.Asteroids || {});
 
   var Ship = Asteroids.Ship = function () {
-    var ship_properties = {
-        x            : this.viewState.width / 2,
-        y            : this.viewState.height / 2,
-        color        : this.defaults.color,
-        radius       : this.defaults.radius,
-        max_speed    : this.defaults.max_speed,
-        acceleration : this.defaults.acceleration
-    };
-    Asteroids.MovingObject.call(this, ship_properties);
+    this.y = this.viewState.width / 2;
+    this.x = this.viewState.height / 2;
+    this.direction = [1,1];
     this.setupKeypressListeners();
   };
 
   Ship.prototype = new Asteroids.MovingObject();
   Ship.prototype.constructor = Ship;
 
-  Ship.prototype.defaults = {
-    acceleration : 0,
-    color        : '#b3b3b3',
-    dir          : [0, 1],
-    max_speed    : 7,
-    radius       : 20
-  };
+  // Set defaults on prototype
+  Ship.prototype.dir          = [0, 1];
+  Ship.prototype.color        = '#B3B3B3';
+  Ship.prototype.radius       = 20;
+  Ship.prototype.max_speed    = 7;
+  Ship.prototype.acceleration =  0;
 
   Ship.prototype.keydownEvents = {
     '38' : 'boostOn',

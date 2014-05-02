@@ -3,20 +3,23 @@
   var Asteroids = window.Asteroids = (window.Asteroids || {});
 
   var Asteroid = Asteroids.Asteroid = function(asteroid_properties) {
-    asteroid_properties.color = this.defaults.color; 
-    Asteroids.MovingObject.call(this, asteroid_properties);
+    this.radius = asteroid_properties.radius;
+    this.speed  = asteroid_properties.speed;
+    this.x = asteroid_properties.x;
+    this.y = asteroid_properties.y;
+    this.direction = asteroid_properties.dir;
+    this.makePoints(20);
   };
 
   Asteroid.prototype = new Asteroids.MovingObject();
   Asteroid.prototype.constructor = Asteroid;
 
-  Asteroid.prototype.defaults = {
-    color  : '#FFF',
-    radius : 40
-  };
+  // Set default properties on prototype
+  Asteroid.prototype.color = '#FFFFFF';
+  Asteroid.prototype.radius = 40;
 
   Asteroid.prototype.makePoints = function (numPoints) {
-    // Points represent the jagged geometry of the drawn asteroid.
+    // Points representing the jagged geometry of the drawn asteroid.
     var az;
     var azimuths = [0, 2*Math.PI];
     this.points = [];
@@ -47,7 +50,7 @@
 
     var randomDirection = Asteroids.Utils.randomDirection;
     var random          = Asteroids.Utils.random;
-    var radius          = random(Asteroid.prototype.defaults.radius);
+    var radius          = random(Asteroid.prototype.radius);
     radius              = radius > 5 ? radius : radius + 10;
     asteroid_properties = { 
                             'x'      : random(maxX),
@@ -58,7 +61,6 @@
                           };
 
     asteroid = new Asteroid(asteroid_properties);
-    asteroid.makePoints(15);
     return asteroid;
   };
 })();

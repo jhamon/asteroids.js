@@ -6,19 +6,16 @@
   var rotateVec    = Asteroids.Utils.rotateVec;
   var normalizeVec = Asteroids.Utils.normalizeVec;
 
-  var MovingObject = Asteroids.MovingObject = function(options) {
-    options               = options || {};
-    var dir               = options.dir || [1,1];
-    this.direction        = normalizeVec(dir);
-    this.x                = options.x || 0;
-    this.y                = options.y || 0;
-    this.speed            = options.speed || 1;
-    this.radius           = options.radius || 20;
-    this.color            = options.color || '#ddd' ;
-    this.acceleration     = options.acceleration || 0 ;
-    this.max_speed        = options.max_speed || 5;
-    this.angular_velocity = options.angular_velocity || 0;
-  };
+  var MovingObject = Asteroids.MovingObject = function() {};
+
+  // Set default properties on prototype.
+  MovingObject.prototype.color            = '#DDD';
+  MovingObject.prototype.speed            = 1;
+  MovingObject.prototype.radius           = 20;
+  MovingObject.prototype.direction        = [1, 1];
+  MovingObject.prototype.max_speed        = 5;
+  MovingObject.prototype.acceleration     = 0;
+  MovingObject.prototype.angular_velocity = 0;
 
   MovingObject.prototype.move = function () {
     this.accelerate()
