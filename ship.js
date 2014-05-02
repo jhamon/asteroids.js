@@ -16,6 +16,7 @@
   };
 
   Ship.prototype = new Asteroids.MovingObject();
+  Ship.prototype.constructor = Ship;
 
   Ship.prototype.defaults = {
     acceleration : 0,

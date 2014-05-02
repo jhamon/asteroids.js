@@ -6,9 +6,9 @@ Asteroids:
 ### <a href="http://www.hamon.io/asteroids.js">Try it out live on the web</a>
 
 ### Tech Inventory
-- Vanilla object-oriented javascript
-- HTML5 canvas
-- sprinkling of jQuery for keyboard stuff
+- Object-oriented javascript, from scratch
+- HTML5 Canvas
+- Sprinkling of jQuery for keyboard stuff
 
 ### Description
 

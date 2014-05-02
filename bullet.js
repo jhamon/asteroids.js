@@ -19,6 +19,7 @@
   };
 
   Bullet.prototype = new Asteroids.MovingObject();
+  Bullet.prototype.constructor = Bullet;
 
   Bullet.prototype.defaults = {
     speed: 9,

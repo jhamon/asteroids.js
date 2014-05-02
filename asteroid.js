@@ -8,6 +8,7 @@
   };
 
   Asteroid.prototype = new Asteroids.MovingObject();
+  Asteroid.prototype.constructor = Asteroid;
 
   Asteroid.prototype.defaults = {
     color  : '#FFF',
