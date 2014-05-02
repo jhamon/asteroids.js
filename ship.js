@@ -1,9 +1,11 @@
 (function() {
   var Asteroids = window.Asteroids = (window.Asteroids || {});
 
-  var Ship = Asteroids.Ship = function (position) {
+  var Ship = Asteroids.Ship = function () {
+    var positionX = this.maxX / 2;
+    var positionY = this.maxY / 2;
     var ship_properties = {
-        pos: position,
+        pos: [positionX, positionY],
         radius: this.defaults.radius,
         color: this.defaults.color,
         acceleration: this.defaults.acceleration
@@ -20,10 +22,9 @@
     acceleration: 0
   }
 
-  Ship.prototype.move = function (width, height) {
-    var ship = this;
-    ship.power(-.01); // break slowly if not accelerating.
-    Asteroids.MovingObject.prototype.move.call(ship, width, height);
+  Ship.prototype.move = function () {
+    this.power(-.01); // break slowly if not accelerating.
+    Asteroids.MovingObject.prototype.move.call(this);
   }
 
   Ship.prototype.power = function(impulse) {

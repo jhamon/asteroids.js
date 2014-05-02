@@ -1,17 +1,11 @@
 (function() {
   var Asteroids = window.Asteroids = (window.Asteroids || {});
 
-  var Asteroid = Asteroids.Asteroid = function(pos, speed, direction, radius, color) {
-    var asteroid_properties = {
-        dir: direction,
-        pos: pos,
-        speed: speed,
-        radius: radius,
-        color: color
-    }
+  var Asteroid = Asteroids.Asteroid = function(asteroid_properties) {
+    asteroid_properties.color = this.defaults.color; 
     Asteroids.MovingObject.call(this, asteroid_properties);
   }
-  
+
   Asteroid.inherits(Asteroids.MovingObject);
 
   Asteroid.prototype.defaults = {
@@ -20,6 +14,7 @@
   }
 
   Asteroid.prototype.makePoints = function (numPoints) {
+    // Points represent the jagged geometry of the drawn asteroid.
     this.points = [];
     var azimuths = [0, 2*Math.PI];
 
@@ -39,17 +34,33 @@
     return this.points;
   }
 
-  Asteroid.random = function(maxXPosition, maxYPosition) {
-    // Factory returns a randomly positioned asteroid instance.
-    var randomDirection = Asteroids.Utils.randomDirection;
-    var random = Asteroids.Utils.random;
+  Asteroid.random = function() {
+    // Factory returns an asteroid instance with random position, speed, dir, size.
+    var randomDirection, 
+        random, 
+        pos, 
+        speed, 
+        direction, 
+        radius, 
+        asteroid_properties;
 
-    var pos = [random(maxXPosition), random(maxYPosition)];
-    var speed = random(2);
-    var direction = [randomDirection(2), randomDirection(2)];
-    var radius = random(Asteroid.prototype.defaults.radius);
-    radius = radius > 5 ? radius : radius + 10;
-    asteroid = new Asteroid(pos, speed, direction, radius, Asteroid.COLOR);
+    randomDirection     = Asteroids.Utils.randomDirection;
+    random              = Asteroids.Utils.random;
+
+    pos                 = [random(this.prototype.maxX), random(this.prototype.maxY)];
+    speed               = random(2);
+    direction           = randomDirection();
+    radius              = random(Asteroid.prototype.defaults.radius);
+    radius              = radius > 5 ? radius : radius + 10;
+    asteroid_properties = { 
+                            'pos': pos,
+                            'speed': speed,
+                            'dir': direction,
+                            'radius': radius,
+                          }
+
+
+    asteroid = new Asteroid(asteroid_properties);
     asteroid.makePoints(20);
     return asteroid;
   }

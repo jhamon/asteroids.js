@@ -8,25 +8,26 @@
   Game.prototype.start = function (canvas) {
     this.gameWidth  = canvas.width;
     this.gameHeight = canvas.height;
+    this.configureMovables();
     this.ctx        = canvas.getContext("2d");
-    this.ship       = this.createShip();
+    this.ship       = new Asteroids.Ship();
     this.asteroids  = this.addAsteroids();
     this.drawer     = new Asteroids.CanvasDrawer(this);
     this.step();
-  }
-
-  Game.prototype.createShip = function () {
-    var shipPosition = [this.gameWidth/2, this.gameHeight/2]
-    return new Asteroids.Ship(shipPosition);
   }
 
   Game.prototype.addAsteroids = function () {
     var asteroids = [];
     var numAsteroids = Math.floor(this.gameWidth * this.gameHeight / 70000);
     for (var i = 0; i < numAsteroids; i++) {
-      asteroids.push(Asteroids.Asteroid.random(this.gameWidth, this.gameHeight));
+      asteroids.push(Asteroids.Asteroid.random());
     }
     return asteroids;
+  }
+
+  Game.prototype.configureMovables = function () {
+    Asteroids.MovingObject.prototype.maxX = this.gameWidth;
+    Asteroids.MovingObject.prototype.maxY = this.gameHeight;
   }
 
   Game.prototype.step = function () {
@@ -38,14 +39,12 @@
   }
 
   Game.prototype.moveAll = function () {
-    var width = this.gameWidth;
-    var height = this.gameHeight;
     var movables = this.asteroids
                    .concat(this.bullets)
                    .concat(this.ship);
 
     movables.forEach( function (movable) {
-      movable.move(width, height);
+      movable.move();
     });
   }
 

@@ -3,11 +3,19 @@
 
   var Utils = Asteroids.Utils = {};
 
-  Utils.randomDirection = function(max) {
+  Utils.randomPlusOrMinusMax = function(max) {
+      // Random value in range -max to +max
       return (Math.random() * 2 - 1) * max;
   }
 
+  Utils.randomDirection = function () {
+    var xComponent = Utils.randomPlusOrMinusMax(2);
+    var yComponent = Utils.randomPlusOrMinusMax(2);
+    return [xComponent, yComponent];
+  }
+
   Utils.random = function(max) {
+      // Random value bewtween 0 and max.
       return Math.random() * max;
   }
 
