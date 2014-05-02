@@ -1,29 +1,9 @@
 (function () {
   var Asteroids = window.Asteroids = (window.Asteroids || {});
 
-  Number.prototype.mod = function(n) {
-    return ((this%n)+n)%n;
-  }
-
-  var rotateVec = Asteroids.rotateVec = function(vec, theta) {
-    var theta = theta || -0.2;
-
-    var x1 = vec[0];
-    var y1 = vec[1];
-    var x2 = x1 * Math.cos(theta) - y1 * Math.sin(theta);
-    var y2 = x1 * Math.sin(theta) + y1 * Math.cos(theta);
-
-    return [x2, y2];
-  }
-
-  var normalizeVec = Asteroids.normalizeVec = function (dir) {
-    var magnitude = Math.sqrt(Math.pow(dir[0], 2) + Math.pow(dir[1], 2));
-    if (magnitude != 1) {
-      dir[0] = dir[0] / magnitude;
-      dir[1] = dir[1] / magnitude;
-    }
-    return dir;
-  }
+  var mod = Asteroids.Utils.mod;
+  var rotateVec = Asteroids.Utils.rotateVec;
+  var normalizeVec = Asteroids.Utils.normalizeVec;
 
   var MovingObject = Asteroids.MovingObject = function(options) {
     var dir               = options.dir || [1,1];
@@ -49,8 +29,8 @@
     this.pos[0] += (this.direction[0] * this.speed);
     this.pos[1] += (this.direction[1] * this.speed);
 
-    this.pos[0] = this.pos[0].mod(dimx);
-    this.pos[1] = this.pos[1].mod(dimy);
+    this.pos[0] = mod(this.pos[0], dimx);
+    this.pos[1] = mod(this.pos[1], dimy);
   }
 
   MovingObject.prototype.isCollidedWith = function(otherObject) {

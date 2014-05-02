@@ -27,8 +27,8 @@
     var ctx         = this.ctx;
     var ship        = this.game.ship;
     var az          = Math.atan2(ship.direction[1], ship.direction[0]);
-    var pt1         = Asteroids.rotateVec([-10, -25], az - (Math.PI)/2);
-    var pt2         = Asteroids.rotateVec([10, -25], az - (Math.PI)/2);
+    var pt1         = Asteroids.Utils.rotateVec([-10, -25], az - (Math.PI)/2);
+    var pt2         = Asteroids.Utils.rotateVec([10, -25], az - (Math.PI)/2);
     
     ctx.beginPath();
     ctx.fillStyle   = ship.color;

@@ -40,13 +40,8 @@
 
   Asteroid.randomAsteroid = function(dimX, dimY) {
 
-    var randomDirection = function(max) {
-      return (Math.random() * 2 - 1) * max;
-    }
-
-    var random = function(max) {
-      return Math.random() * max;
-    }
+    var randomDirection = Asteroids.Utils.randomDirection;
+    var random = Asteroids.Utils.random;
 
     var pos = [random(dimX), random(dimY)];
     var speed = random(2);
