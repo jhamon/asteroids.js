@@ -3,14 +3,13 @@
   var Asteroids = window.Asteroids = (window.Asteroids || {});
 
   var Ship = Asteroids.Ship = function () {
-    var positionX = this.viewState.width / 2;
-    var positionY = this.viewState.height / 2;
     var ship_properties = {
-        pos          : [positionX, positionY],
-        radius       : this.defaults.radius,
+        x            : this.viewState.width / 2,
+        y            : this.viewState.height / 2,
         color        : this.defaults.color,
-        acceleration : this.defaults.acceleration,
-        max_speed    : this.defaults.max_speed
+        radius       : this.defaults.radius,
+        max_speed    : this.defaults.max_speed,
+        acceleration : this.defaults.acceleration
     };
     Asteroids.MovingObject.call(this, ship_properties);
     this.setupKeypressListeners();
@@ -19,11 +18,11 @@
   Ship.inherits(Asteroids.MovingObject);
 
   Ship.prototype.defaults = {
-    radius       : 20,
+    acceleration : 0,
     color        : '#b3b3b3',
     dir          : [0, 1],
-    acceleration : 0,
-    max_speed    : 7
+    max_speed    : 7,
+    radius       : 20
   };
 
   Ship.prototype.keydownEvents = {
@@ -66,7 +65,7 @@
   };
 
   Ship.prototype.fireBullet = function() {
-    return new Asteroids.Bullet(this.pos, this.direction, this.speed);
+    return new Asteroids.Bullet(this);
   };
 
   Ship.prototype.turnRight = function () {

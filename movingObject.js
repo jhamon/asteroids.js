@@ -9,7 +9,8 @@
   var MovingObject = Asteroids.MovingObject = function(options) {
     var dir               = options.dir || [1,1];
     this.direction        = normalizeVec(dir);
-    this.pos              = options.pos || [0, 0];
+    this.x                = options.x || 0;
+    this.y                = options.y || 0;
     this.speed            = options.speed || 1;
     this.radius           = options.radius || 20;
     this.color            = options.color || '#ddd' ;
@@ -43,23 +44,22 @@
   };
 
   MovingObject.prototype.advance = function () {
-    this.pos[0] += (this.direction[0] * this.speed);
-    this.pos[1] += (this.direction[1] * this.speed);
+    this.x += (this.direction[0] * this.speed);
+    this.y += (this.direction[1] * this.speed);
     return this;
   };
 
   MovingObject.prototype.toroidalWrap = function () {
     var maxX = this.viewState.width;
     var maxY = this.viewState.height;
-
-    this.pos[0] = mod(this.pos[0], maxX);
-    this.pos[1] = mod(this.pos[1], maxY);
+    this.x = mod(this.x, maxX);
+    this.y = mod(this.y, maxY);
     return this;
   };
 
   MovingObject.prototype.isCollidedWith = function(otherObject) {
-    var dx = this.pos[0] - otherObject.pos[0];
-    var dy = this.pos[1] - otherObject.pos[1];
+    var dx = this.x - otherObject.x;
+    var dy = this.y - otherObject.y;
     var distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
     return (distance <= (this.radius + otherObject.radius));
   };

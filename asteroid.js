@@ -49,7 +49,8 @@
     var radius          = random(Asteroid.prototype.defaults.radius);
     radius              = radius > 5 ? radius : radius + 10;
     asteroid_properties = { 
-                            'pos'    : [random(width), random(height)],
+                            'x'      : random(width),
+                            'y'      : random(height),
                             'speed'  : random(2),
                             'dir'    : randomDirection(),
                             'radius' : radius,
