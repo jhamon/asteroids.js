@@ -1,5 +1,5 @@
 $(document).ready( function () {
-  'use strict';
+  "use strict";
   
   var game;
   var canvas = document.getElementById("asteroids_canvas");
@@ -23,6 +23,6 @@ $(document).ready( function () {
 
   console.log("Thanks for checking out my project.  If you're looking for a good Ruby/Javascript dev in the SF Bay Area, please reach out.  I'm Jen Hamon, jen@hamon.io");
   
-  game = new Asteroids.Game(canvas)
+  game = new Asteroids.Game(canvas);
   game.start();
-})
+});

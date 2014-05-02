@@ -4,16 +4,16 @@
 
   var Game = Asteroids.Game = function (canvas) {
     this.bullets    = [];
-    this.ctx        = canvas.getContext("2d");
+    this.ctx        = canvas.getContext('2d');
     this.ship       = new Asteroids.Ship();
     this.drawer     = new Asteroids.CanvasDrawer(this);
     this.asteroids  = this.addAsteroids();
     this.configureEventListeners();
-  }
+  };
 
-  Game.prototype.start = function (canvas) {
+  Game.prototype.start = function () {
     this.step();
-  }
+  };
 
   Game.prototype.NUM_ASTEROIDS = 15;
 
@@ -23,22 +23,22 @@
       asteroids.push(Asteroids.Asteroid.random());
     }
     return asteroids;
-  }
+  };
 
   Game.prototype.configureEventListeners = function () {
     var game = this;
     $(document).keydown(function (event) {
       if (event.keyCode === 32 ) game.fireBullet(); // spacebar
     });
-  }
+  };
 
   Game.prototype.step = function () {
-    this.moveAll();
     this.drawer.drawAll();
-    this.ageBullets();
-    this.checkBulletImpacts();
-    requestAnimationFrame(this.step.bind(this))
-  }
+    this.moveAll()
+        .ageBullets()
+        .checkBulletImpacts();
+    requestAnimationFrame(this.step.bind(this));
+  };
 
   Game.prototype.moveAll = function () {
     var movables = this.asteroids
@@ -48,24 +48,26 @@
     movables.forEach( function (movable) {
       movable.move();
     });
-  }
+    return this;
+  };
 
   Game.prototype.ageBullets = function () {
     this.bullets = this.bullets.filter( function (bullet) { 
       bullet.incrementAge();
       return bullet.age < 100; 
     });
-  }
+    return this;
+  };
 
   Game.prototype.deleteBullet = function (bullet) {
     var delete_index = this.bullets.indexOf(bullet);
-    this.bullets.splice(delete_index, 1)
-  }
+    this.bullets.splice(delete_index, 1);
+  };
 
   Game.prototype.deleteAsteroid = function (asteroid) {
     var delete_index = this.asteroids.indexOf(asteroid);
     this.asteroids.splice(delete_index, 1);
-  }
+  };
 
   Game.prototype.checkBulletImpacts = function () {
     var game = this;
@@ -81,11 +83,12 @@
       });
     });
 
-    bulletsToDelete.map(game.deleteBullet.bind(game))
-    asteroidsToDelete.map(game.deleteAsteroid.bind(game))
-  }
+    bulletsToDelete.map(game.deleteBullet.bind(game));
+    asteroidsToDelete.map(game.deleteAsteroid.bind(game));
+    return this;
+  };
 
   Game.prototype.fireBullet = function() {
     this.bullets.push(this.ship.fireBullet());
-  }
+  };
 })();
