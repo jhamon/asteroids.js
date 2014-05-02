@@ -1,9 +1,10 @@
 (function() {
+  'use strict';
   var Asteroids = window.Asteroids = (window.Asteroids || {});
 
   var Ship = Asteroids.Ship = function () {
-    var positionX = this.maxX / 2;
-    var positionY = this.maxY / 2;
+    var positionX = this.viewState.width / 2;
+    var positionY = this.viewState.height / 2;
     var ship_properties = {
         pos: [positionX, positionY],
         radius: this.defaults.radius,
@@ -11,6 +12,7 @@
         acceleration: this.defaults.acceleration
     }
     Asteroids.MovingObject.call(this, ship_properties)
+    this.setupKeypressListeners();
   }
 
   Ship.inherits(Asteroids.MovingObject);
@@ -20,6 +22,32 @@
     color: "#b3b3b3",
     dir: [0, 1],
     acceleration: 0
+  }
+
+  Ship.prototype.keydownEvents = {
+    '38': 'boostOn',
+    '40': 'brake',
+    '37': 'turnRight',
+    '39': 'turnLeft'
+  }
+
+  Ship.prototype.keyupEvents = {
+    '38': 'boostOff',
+    '37': 'deactivateTurn',
+    '39': 'deactivateTurn'
+  }
+
+  Ship.prototype.setupKeypressListeners = function () {
+    var ship = this;
+    $(document).keydown(function (event) {
+      var action = ship.keydownEvents[event.keyCode];
+      if (action !== undefined) ship[action]();
+    });
+
+    $(document).keyup(function (event) {
+      var action = ship.keyupEvents[event.keyCode];
+      if (action !== undefined) ship[action]();
+    });
   }
 
   Ship.prototype.move = function () {

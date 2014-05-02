@@ -1,4 +1,5 @@
 (function () {
+  'use strict';
   var Asteroids = window.Asteroids = (window.Asteroids || {});
 
   var mod          = Asteroids.Utils.mod;
@@ -48,15 +49,18 @@
   }
 
   MovingObject.prototype.toroidalWrap = function () {
-    this.pos[0] = mod(this.pos[0], this.maxX);
-    this.pos[1] = mod(this.pos[1], this.maxY);
+    var maxX = this.viewState.width;
+    var maxY = this.viewState.height;
+
+    this.pos[0] = mod(this.pos[0], maxX);
+    this.pos[1] = mod(this.pos[1], maxY);
     return this;
   }
 
   MovingObject.prototype.isCollidedWith = function(otherObject) {
-      var dx = this.pos[0] - otherObject.pos[0];
-      var dy = this.pos[1] - otherObject.pos[1];
-      var distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-      return (distance <= (this.radius + otherObject.radius));
+    var dx = this.pos[0] - otherObject.pos[0];
+    var dy = this.pos[1] - otherObject.pos[1];
+    var distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+    return (distance <= (this.radius + otherObject.radius));
   }
 })();

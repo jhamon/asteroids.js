@@ -5,8 +5,6 @@
   var CanvasDrawer = Asteroids.CanvasDrawer = function (game) {
     this.game      = game;
     this.ctx       = game.ctx;
-    this.height    = game.gameHeight;
-    this.width     = game.gameWidth;
   };
 
   CanvasDrawer.prototype = {};
@@ -19,7 +17,9 @@
   };
 
   CanvasDrawer.prototype.clear = function () {
-    this.ctx.clearRect(0, 0, this.width, this.height);
+    var width = this.viewState.width;
+    var height = this.viewState.height;
+    this.ctx.clearRect(0, 0, width, height);
     return this;
   };
 

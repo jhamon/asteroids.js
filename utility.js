@@ -1,4 +1,5 @@
 (function () {
+  'use strict';
   var Asteroids = window.Asteroids = (window.Asteroids || {});
 
   var Utils = Asteroids.Utils = {};

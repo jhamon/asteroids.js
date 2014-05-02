@@ -42,12 +42,17 @@
         speed, 
         direction, 
         radius, 
-        asteroid_properties;
+        asteroid_properties,
+        width,
+        height;
+
+    width = this.prototype.viewState.width;
+    height = this.prototype.viewState.height;
 
     randomDirection     = Asteroids.Utils.randomDirection;
     random              = Asteroids.Utils.random;
 
-    pos                 = [random(this.prototype.maxX), random(this.prototype.maxY)];
+    pos                 = [random(width), random(height)];
     speed               = random(2);
     direction           = randomDirection();
     radius              = random(Asteroid.prototype.defaults.radius);
@@ -61,7 +66,7 @@
 
 
     asteroid = new Asteroid(asteroid_properties);
-    asteroid.makePoints(20);
+    asteroid.makePoints(15);
     return asteroid;
   }
 })();

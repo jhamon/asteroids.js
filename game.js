@@ -1,4 +1,5 @@
 (function() {
+  'use strict';
   var Asteroids = window.Asteroids = (window.Asteroids || {});
 
   var Game = Asteroids.Game = function () {
@@ -6,28 +7,29 @@
   }
 
   Game.prototype.start = function (canvas) {
-    this.gameWidth  = canvas.width;
-    this.gameHeight = canvas.height;
-    this.configureMovables();
     this.ctx        = canvas.getContext("2d");
     this.ship       = new Asteroids.Ship();
     this.asteroids  = this.addAsteroids();
     this.drawer     = new Asteroids.CanvasDrawer(this);
+    this.configureEventListeners();
     this.step();
   }
 
+  Game.prototype.NUM_ASTEROIDS = 15;
+
   Game.prototype.addAsteroids = function () {
     var asteroids = [];
-    var numAsteroids = Math.floor(this.gameWidth * this.gameHeight / 70000);
-    for (var i = 0; i < numAsteroids; i++) {
+    for (var i = 0; i < this.NUM_ASTEROIDS; i++) {
       asteroids.push(Asteroids.Asteroid.random());
     }
     return asteroids;
   }
 
-  Game.prototype.configureMovables = function () {
-    Asteroids.MovingObject.prototype.maxX = this.gameWidth;
-    Asteroids.MovingObject.prototype.maxY = this.gameHeight;
+  Game.prototype.configureEventListeners = function () {
+    var game = this;
+    $(document).keydown(function (event) {
+      if (event.keyCode === 32 ) game.fireBullet(); // spacebar
+    });
   }
 
   Game.prototype.step = function () {
