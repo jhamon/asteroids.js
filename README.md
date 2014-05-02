@@ -1,7 +1,9 @@
-Asteroids
+Asteroids: 
 ============
 
 ![Asteroids game screenshot](http://www.github.com/jhamon/asteroids.js/raw/master/screenshot.png)
+
+### <a href="http://www.hamon.io/asteroids.js">Try it out live on the web</a>
 
 ### Tech Inventory
 - Vanilla object-oriented javascript
