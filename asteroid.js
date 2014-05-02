@@ -41,16 +41,16 @@
     var asteroid,
         asteroid_properties;
 
-    var width = this.prototype.viewState.width;
-    var height = this.prototype.viewState.height;
+    var maxX = this.prototype.viewState.width;
+    var maxY = this.prototype.viewState.height;
 
     var randomDirection = Asteroids.Utils.randomDirection;
     var random          = Asteroids.Utils.random;
     var radius          = random(Asteroid.prototype.defaults.radius);
     radius              = radius > 5 ? radius : radius + 10;
     asteroid_properties = { 
-                            'x'      : random(width),
-                            'y'      : random(height),
+                            'x'      : random(maxX),
+                            'y'      : random(maxY),
                             'speed'  : random(2),
                             'dir'    : randomDirection(),
                             'radius' : radius,
