@@ -9,7 +9,8 @@
         pos: [positionX, positionY],
         radius: this.defaults.radius,
         color: this.defaults.color,
-        acceleration: this.defaults.acceleration
+        acceleration: this.defaults.acceleration,
+        max_speed: this.defaults.max_speed
     }
     Asteroids.MovingObject.call(this, ship_properties)
     this.setupKeypressListeners();
@@ -21,7 +22,8 @@
     radius: 20,
     color: "#b3b3b3",
     dir: [0, 1],
-    acceleration: 0
+    acceleration: 0,
+    max_speed: 7
   }
 
   Ship.prototype.keydownEvents = {

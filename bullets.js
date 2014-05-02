@@ -8,6 +8,7 @@
         speed: this.defaults.speed,
         radius: this.defaults.size,
         color: this.defaults.color,
+        max_speed: this.defaults.max_speed
     }
 
     Asteroids.MovingObject.call(this, bullet_properties);
@@ -18,8 +19,9 @@
 
   Bullet.prototype.defaults = {
     speed: 9,
-    size: 3,
-    color: '#ff0000'
+    size: 5,
+    color: '#ff0000',
+    max_speed: 11
   }
 
   Bullet.prototype.incrementAge = function() {
