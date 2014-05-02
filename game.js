@@ -5,16 +5,39 @@
     this.bullets = [];
   }
 
+  Game.prototype.start = function (canvas) {
+    this.gameWidth  = canvas.width;
+    this.gameHeight = canvas.height;
+    this.ctx        = canvas.getContext("2d");
+    this.ship       = this.createShip();
+    this.asteroids  = this.addAsteroids();
+    this.drawer     = new Asteroids.CanvasDrawer(this);
+    this.step();
+  }
+
+  Game.prototype.createShip = function () {
+    var shipPosition = [this.gameWidth/2, this.gameHeight/2]
+    return new Asteroids.Ship(shipPosition);
+  }
+
   Game.prototype.addAsteroids = function () {
     var asteroids = [];
     var numAsteroids = Math.floor(this.gameWidth * this.gameHeight / 70000);
     for (var i = 0; i < numAsteroids; i++) {
-      asteroids.push(Asteroids.Asteroid.randomAsteroid(this.gameWidth, this.gameHeight));
+      asteroids.push(Asteroids.Asteroid.random(this.gameWidth, this.gameHeight));
     }
     return asteroids;
   }
 
-  Game.prototype.move = function () {
+  Game.prototype.step = function () {
+    this.moveAll();
+    this.drawer.drawAll();
+    this.ageBullets();
+    this.checkBulletImpacts();
+    requestAnimationFrame(this.step.bind(this))
+  }
+
+  Game.prototype.moveAll = function () {
     var width = this.gameWidth;
     var height = this.gameHeight;
     var movables = this.asteroids
@@ -43,16 +66,6 @@
     this.asteroids.splice(delete_index, 1);
   }
 
-  Game.prototype.step = function () {
-    this.move();
-    this.drawer.drawAll();
-    this.ageBullets();
-    this.checkBulletImpacts();
-    this.ship.power(-.01);
-    requestAnimationFrame(this.step.bind(this))
-    // this.checkCollisions();
-  }
-
   Game.prototype.checkBulletImpacts = function () {
     var game = this;
     var bulletsToDelete = [];
@@ -73,15 +86,5 @@
 
   Game.prototype.fireBullet = function() {
     this.bullets.push(this.ship.fireBullet());
-  }
-
-  Game.prototype.start = function (canvas) {
-    this.gameWidth = canvas.width;
-    this.gameHeight = canvas.height;
-    this.ctx = canvas.getContext("2d");
-    this.ship = new Asteroids.Ship([this.gameWidth/2, this.gameHeight/2])
-    this.asteroids = this.addAsteroids();
-    this.drawer = new Asteroids.CanvasDrawer(this);
-    this.step();
   }
 })();

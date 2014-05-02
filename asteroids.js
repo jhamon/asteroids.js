@@ -11,6 +11,7 @@
     }
     Asteroids.MovingObject.call(this, asteroid_properties);
   }
+  
   Asteroid.inherits(Asteroids.MovingObject);
 
   Asteroid.prototype.defaults = {
@@ -38,12 +39,12 @@
     return this.points;
   }
 
-  Asteroid.randomAsteroid = function(dimX, dimY) {
-
+  Asteroid.random = function(maxXPosition, maxYPosition) {
+    // Factory returns a randomly positioned asteroid instance.
     var randomDirection = Asteroids.Utils.randomDirection;
     var random = Asteroids.Utils.random;
 
-    var pos = [random(dimX), random(dimY)];
+    var pos = [random(maxXPosition), random(maxYPosition)];
     var speed = random(2);
     var direction = [randomDirection(2), randomDirection(2)];
     var radius = random(Asteroid.prototype.defaults.radius);
