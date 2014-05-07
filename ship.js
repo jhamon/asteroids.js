@@ -3,8 +3,8 @@
   var Asteroids = window.Asteroids = (window.Asteroids || {});
 
   var Ship = Asteroids.Ship = function () {
-    this.y = this.viewState.width / 2;
-    this.x = this.viewState.height / 2;
+    this.x = this.viewState.width / 2;
+    this.y = this.viewState.height / 2;
     this.direction = [1,1];
     this.setupKeypressListeners();
   };
