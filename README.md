@@ -1,7 +1,7 @@
-Asteroids: 
+Asteroids [![Code Climate](https://codeclimate.com/github/jhamon/asteroids.js.png)](https://codeclimate.com/github/jhamon/asteroids.js)
 ============
 
-![Asteroids game screenshot](http://www.github.com/jhamon/asteroids.js/raw/master/screenshot.png)
+![Asteroids game screenshot](http://www.github.com/jhamon/asteroids.js/raw/master/screenshot.png) 
 
 ### <a href="http://www.hamon.io/asteroids.js">Try it out live on the web</a>
 

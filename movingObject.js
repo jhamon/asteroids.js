@@ -4,7 +4,6 @@
 
   var mod          = Asteroids.Utils.mod;
   var rotateVec    = Asteroids.Utils.rotateVec;
-  var normalizeVec = Asteroids.Utils.normalizeVec;
 
   var MovingObject = Asteroids.MovingObject = function() {};
 

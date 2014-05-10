@@ -28,7 +28,9 @@
   Game.prototype.configureEventListeners = function () {
     var game = this;
     $(document).keydown(function (event) {
-      if (event.keyCode === 32 ) game.fireBullet(); // spacebar
+      if (event.keyCode === 32 ) {  // spacebar
+        game.fireBullet();
+      }
     });
   };
 
@@ -37,7 +39,7 @@
     this.moveAll()
         .ageBullets()
         .checkBulletImpacts();
-    requestAnimationFrame(this.step.bind(this));
+    window.requestAnimationFrame(this.step.bind(this));
   };
 
   Game.prototype.moveAll = function () {

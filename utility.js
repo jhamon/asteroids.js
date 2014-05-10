@@ -34,13 +34,4 @@
 
     return [x2, y2];
   };
-
-  Utils.normalizeVec = function (dir) {
-    var magnitude = Math.sqrt(Math.pow(dir[0], 2) + Math.pow(dir[1], 2));
-    if (magnitude != 1) {
-      dir[0] = dir[0] / magnitude;
-      dir[1] = dir[1] / magnitude;
-    }
-    return dir;
-  };
 })();

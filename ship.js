@@ -36,12 +36,12 @@
     var ship = this;
     $(document).keydown(function (event) {
       var action = ship.keydownEvents[event.keyCode];
-      if (action !== undefined) ship[action]();
+      if (action !== undefined) { ship[action](); }
     });
 
     $(document).keyup(function (event) {
       var action = ship.keyupEvents[event.keyCode];
-      if (action !== undefined) ship[action]();
+      if (action !== undefined) { ship[action](); }
     });
   };
 
