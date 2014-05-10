@@ -4,7 +4,7 @@ $(document).ready( function () {
   var game;
   var canvas = document.getElementById("asteroids_canvas");
 
-  Asteroids = window.Asteroids = (window.Asteroids || {});
+  var Asteroids = window.Asteroids = (window.Asteroids || {});
   Asteroids.viewState = {};
 
   function updateViewState() {
