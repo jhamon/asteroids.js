@@ -34,15 +34,16 @@
 
   Ship.prototype.setupKeypressListeners = function () {
     var ship = this;
-    $(document).keydown(function (event) {
-      var action = ship.keydownEvents[event.keyCode];
-      if (action !== undefined) { ship[action](); }
-    });
 
-    $(document).keyup(function (event) {
-      var action = ship.keyupEvents[event.keyCode];
-      if (action !== undefined) { ship[action](); }
-    });
+    function keyEventCallback (eventList) {
+      return function (event) {
+        var action = eventList[event.keyCode];
+        if (action !== undefined) { ship[action](); }
+      };
+    }
+
+    $(document).keydown(keyEventCallback(ship.keydownEvents));
+    $(document).keyup(keyEventCallback(ship.keyupEvents));
   };
 
   Ship.prototype.move = function () {
